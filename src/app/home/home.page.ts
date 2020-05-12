@@ -13,10 +13,10 @@ import {ModalHelpPage} from './modal-help/modal-help.page';
 export class HomePage implements AfterViewInit {
 
   private map: Map;
-  private textSearch: string;
+  textSearch: string;
   nominatimResponse$: Observable<NominatimResponse[]>;
   nominatimLocateResponse$: Observable<NominatimResponse[]>;
-  private homeMarkers: Marker[] = [];
+  homeMarkers: Marker[] = [];
   locateSearch: string;
   locateMarker: Lmarker;
 
