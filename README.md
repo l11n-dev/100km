@@ -10,3 +10,6 @@
 ## Vie privée
 
 Nous n'utilisons aucun cookie et ne stockons pas de données.
+
+## Cartographie
+Les cartes sont fournies par [OpenStreetMap](https://www.openstreetmap.org), la recherche des adresses par [Nominatim](https://nominatim.openstreetmap.org/).
