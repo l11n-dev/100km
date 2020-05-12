@@ -1,20 +1,50 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
+    <!--  <ion-toolbar>-->
+    <!--    <ion-title>-->
+    <!--      Blank-->
+    <!--    </ion-title>-->
+    <!--  </ion-toolbar>-->
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <div id="search" class="search" style="max-width: 100%">
+        <ion-item>
+            <ion-input [(ngModel)]="locateSearch" [placeholder]="'Position actuelle'" (keyup.enter)="onLocate($event)" [clearInput]="true" type="search"></ion-input>
+            <ion-button>
+                <ion-icon name="locate-outline"></ion-icon>
+            </ion-button>
+        </ion-item>
+        <ion-list *ngIf="(nominatimLocateResponse$ | async) as nominatimResponse">
+            <ion-item *ngFor="let response of nominatimResponse" (click)="displayLocation(response)">
+                <ion-label>{{ response.displayName }}</ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-item>
+            <ion-input [(ngModel)]="textSearch" [placeholder]="'Domicile'" (keyup.enter)="onInput($event)" [clearInput]="true" type="search"></ion-input>
+            <ion-button>
+                <ion-icon name="search-outline"></ion-icon>
+            </ion-button>
+        </ion-item>
+
+        <ion-list *ngIf="(nominatimResponse$ | async) as nominatimResponse">
+            <ion-item *ngFor="let response of nominatimResponse" (click)="displayHomeLocation(response)">
+                <ion-label>{{ response.displayName }}</ion-label>
+            </ion-item>
+        </ion-list>
+        <ion-list *ngIf="homeMarkers && homeMarkers.length > 0 ">
+            <ion-item *ngFor="let homeMarker of homeMarkers">
+                <ion-icon name="home-outline"></ion-icon>
+                <ion-label>{{ homeMarker.displayName }}</ion-label>
+                <ion-button (click)="deleteHomeMaker(homeMarker)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+            </ion-item>
+        </ion-list>
+        </div>
+    <div id="map" style="height: 100%;width: 100%"></div>
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed">
+        <ion-fab-button (click)="presentModal();">
+            <ion-icon name="help-circle-outline"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
 </ion-content>

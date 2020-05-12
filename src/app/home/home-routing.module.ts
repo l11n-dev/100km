@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage,
+  },
+  {
+    path: 'modal-help',
+    loadChildren: () => import('./modal-help/modal-help.module').then( m => m.ModalHelpPageModule)
   }
 ];
 

@@ -25,3 +25,11 @@
 #container a {
   text-decoration: none;
 }
+
+.search {
+  position: absolute;
+  z-index: 1000;
+  height: auto;
+  overflow: hidden;
+  padding: 10px;
+}
